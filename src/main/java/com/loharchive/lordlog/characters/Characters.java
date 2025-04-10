@@ -1,16 +1,18 @@
 package com.loharchive.lordlog.characters;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.loharchive.lordlog.artifact.Artifact;
+import com.loharchive.lordlog.rerun.Rerun;
+import com.loharchive.lordlog.skill.Skill;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -35,5 +37,16 @@ public class Characters {
     private String favorite_food;
     private Date release_date;
     private String img_url;
+
+    private boolean delete_flag;
+
+    @OneToMany(mappedBy = "characters", cascade =CascadeType.MERGE)
+    private List<Skill> skills = new ArrayList<>();
+
+    @OneToMany(mappedBy = "characters", cascade =CascadeType.MERGE)
+    private List<Artifact> artifacts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "characters", cascade =CascadeType.MERGE)
+    private List<Rerun> rerunDate = new ArrayList<>();
 
 }
