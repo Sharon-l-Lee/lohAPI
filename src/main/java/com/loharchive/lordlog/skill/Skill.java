@@ -21,6 +21,8 @@ public class Skill {
     private Long id;
 
     private String name;
+
+    @Enumerated(EnumType.STRING)
     private SkillType type;
     private int cooldown;
     private int slot;

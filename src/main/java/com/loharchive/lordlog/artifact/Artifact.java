@@ -21,6 +21,7 @@ public class Artifact {
     private Long id;
 
     private String name;
+    @Enumerated(EnumType.STRING)
     private ArtifactType type;
     private String a_desc;
     private String a_desc_2;
