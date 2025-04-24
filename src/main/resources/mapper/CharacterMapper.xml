@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.orgd/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loharchive.lordlog.characters.CharactersMapper">
+    <select id="searchCharacter" parameterType="java.util.Map" resultType="com.loharchive.lordlog.search.SearchCharactersDto">
+        select c.id as id, c.cname, e.name as element_name, j.name as job_name, c.release_date, c.img_url, e.id as element_id, j.id as job_id
+        from characters c
+        left outer join element e on c.element_id = e.id
+        left outer join job j on c.job_id = j.id
+
+<!--        where c.cname like concat('%', #{keyword}, '%')-->
+<!--        or concat(e.name, c.cname) like concat('%', #{keyword}, '%')-->
+        <where>
+            <foreach collection="keywords" item="keyword" separator="AND" >
+                (
+                    c.cname like concat('%', #{keyword}, '%')
+                    or concat(e.name, c.cname) like concat('%', #{keyword}, '%')
+                    or j.name like concat('%', #{keyword}, '%')
+                )
+
+<!--                and exists(select 1 from skills s where s.c_id = c.id and s_desc like concat('%', #{keyword}, '%'))-->
+<!--                and exists(select 1 from artifacts a where a.c_id = c.id and a_desc like concat('%', #{keyword}, '%'))-->
+
+            </foreach>
+        </where>
+    </select>
+</mapper>

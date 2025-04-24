@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.orgd/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loharchive.lordlog.skills.SkillsMapper">
+    <select id="searchSkills" parameterType="java.util.Map" resultType="com.loharchive.lordlog.search.SearchSkillsDto">
+        select s.name as sname, s.type as stype, s.cooldown, s.slot, s.s_desc, c.cname as cname, c.id as c_id
+        from skills s
+            left join characters c on s.c_id = c.id
+        <where>
+            <foreach collection="keywords" item="keyword" separator="OR" open="(" close=")">
+                (
+                s.name like concat('%', #{keyword}, '%')
+                or concat(s.name, s.s_desc) like concat('%', #{keyword}, '%')
+                )
+            </foreach>
+        </where>
+    </select>
+</mapper>

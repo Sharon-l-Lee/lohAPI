@@ -1,29 +1,19 @@
 package com.loharchive.lordlog.search;
 
-import com.loharchive.lordlog.common.enums.ArtifactType;
-import com.loharchive.lordlog.common.enums.SkillType;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 
-import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.util.List;
+
+@Getter
+@Setter
+@AllArgsConstructor
 public class SearchResultDto {
-    //캐릭터 정보
-    private Long id;
-    private String cname;
-    private Long element_id;
-    private Long job_id;
-    private String img_url;
+    private List<SearchCharactersDto> characters;
+    private List<SearchSkillsDto> skills;
+    private List<SearchArtifactsDto> artifacts;
 
-    //아티팩트 정보
-    private String aname;
-    @Enumerated(EnumType.STRING)
-    private ArtifactType atype;
-
-    //스킬 정보
-    private String sname;
-    @Enumerated(EnumType.STRING)
-    private SkillType stype;
-    private int slot;
 
 }

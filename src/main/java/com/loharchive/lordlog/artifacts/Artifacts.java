@@ -1,40 +1,34 @@
-package com.loharchive.lordlog.skill;
-
+package com.loharchive.lordlog.artifacts;
 
 import com.loharchive.lordlog.characters.Characters;
-import com.loharchive.lordlog.common.enums.SkillType;
+import com.loharchive.lordlog.common.enums.ArtifactType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Skill {
-
+public class Artifacts {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-
     @Enumerated(EnumType.STRING)
-    private SkillType type;
-    private int cooldown;
-    private int slot;
-    private String s_desc;
-    private String s_desc_2;
-    private String s_desc_3;
-    private String s_desc_4;
-    private String s_desc_5;
-    private String s_desc_6;
+    private ArtifactType type;
+    private String a_desc;
+    private String a_desc_2;
+    private String a_desc_3;
+    private String a_desc_4;
+    private String a_desc_5;
+    private String a_desc_6;
+    private boolean delete_flag;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="c_id")
     private Characters characters;
-
 }

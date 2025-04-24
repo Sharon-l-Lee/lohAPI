@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: lordlog
+  datasource:
+    url: jdbc:postgresql://db:5432/loh_db
+    username: lordlogs
+    password: 9539a233-bc2a-4897-af0c-ef484d6c404e
+    driver-class-name: org.postgresql.Driver
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  level:
+    root: INFO
+    com.loharchive.lordlog: DEBUG
