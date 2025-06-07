@@ -10,9 +10,13 @@ import lombok.Setter;
 @Setter
 public class SearchSkillsDto {
 
+    private Long sid;
     private String sname;
     @Enumerated(EnumType.STRING)
     private SkillType stype;
+    private String s_desc;
+    private String img_url;
     private int slot;
-    private int c_id;
+    private Long c_id;
+    private String cname;
 }

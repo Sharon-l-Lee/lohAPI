@@ -30,6 +30,7 @@ public class Skills {
     private String s_desc_4;
     private String s_desc_5;
     private String s_desc_6;
+    private String img_url;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="c_id")

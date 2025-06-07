@@ -20,6 +20,9 @@ public class Rerun {
     private Long id;
 
     private Date rerun_date;
+    private Date rerun_date_2;
+    private Date rerun_date_3;
+    private String is_pickup;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name ="c_id")

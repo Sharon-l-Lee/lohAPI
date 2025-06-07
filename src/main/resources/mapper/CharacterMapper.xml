@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.orgd/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.loharchive.lordlog.characters.CharactersMapper">
     <select id="searchCharacter" parameterType="java.util.Map" resultType="com.loharchive.lordlog.search.SearchCharactersDto">
-        select c.id as id, c.cname, e.name as element_name, j.name as job_name, c.release_date, c.img_url, e.id as element_id, j.id as job_id
+        select c.id as id, c.cname, c.cname_en, e.name as element_name, j.name as job_name, c.release_date, c.img_url, e.id as element_id, j.id as job_id
         from characters c
         left outer join element e on c.element_id = e.id
         left outer join job j on c.job_id = j.id
@@ -22,5 +22,31 @@
 
             </foreach>
         </where>
+    </select>
+
+
+    <select id="searchCharacterDetail" parameterType="int" resultType="com.loharchive.lordlog.search.SearchCharacterDetailDto">
+        select distinct c.*, e.name as element_name, j.name as job_name
+        from characters c
+            left outer join element e on c.element_id = e.id
+            left outer join job j on c.job_id = j.id
+        where
+            1=1
+            and c.id = #{idx}
+            and c.delete_flag = false
+    </select>
+
+
+    <select id="rerunCharacterList" parameterType="String" resultType="com.loharchive.lordlog.search.SearchRerunDto">
+        select c.id, c.cname, c.cname_en, e.name as element_name, j.name as job_name, c.release_date, r.rerun_date, r.rerun_date_2, r.rerun_date_3, r.is_pickup
+        from characters c
+            left join element e on c.element_id = e.id
+            left join job j on c.job_id = j.id
+            left join rerun r on c.id = r.c_id
+        where 1=1
+        and c.cname like concat('%', #{keyword, jdbcType=VARCHAR}, '%')
+        and delete_flag = false
+        order by rerun_date asc;
+
     </select>
 </mapper>

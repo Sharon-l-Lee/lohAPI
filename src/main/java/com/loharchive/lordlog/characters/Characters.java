@@ -24,6 +24,8 @@ public class Characters {
 
     private String cname;
     private String cname_en;
+    private Long age;
+    private Long height;
     private Date birth;
     private String zodiac;
     private String voice;

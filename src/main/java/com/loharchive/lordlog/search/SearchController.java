@@ -23,4 +23,14 @@ public class SearchController {
         return searchService.searchService(keywords);
 
     }
+
+    @GetMapping("/detail")
+    public SearchCharacterDetailDto searchDetail(@RequestParam int idx){
+        return searchService.searchCharacterDetail(idx);
+    }
+
+    @GetMapping("/rerunlist")
+    public List<SearchRerunDto> rerunAll(@RequestParam(required = false) String keyword){
+        return searchService.rerunCharacterList(keyword);
+    }
 }

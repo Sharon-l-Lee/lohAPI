@@ -10,8 +10,12 @@ import lombok.Setter;
 @Setter
 public class SearchArtifactsDto {
 
+    private Long aid;
     private String aname;
     @Enumerated(EnumType.STRING)
     private ArtifactType atype;
-    private int c_id;
+    private String a_desc;
+    private String img_url;
+    private Long c_id;
+    private String cname;
 }

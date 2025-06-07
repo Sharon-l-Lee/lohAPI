@@ -4,6 +4,7 @@ import com.loharchive.lordlog.artifacts.ArtifactsMapper;
 import com.loharchive.lordlog.characters.CharactersMapper;
 import com.loharchive.lordlog.skills.SkillsMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -36,6 +37,16 @@ public class SearchService {
         List<SearchArtifactsDto> artifactResult = artifactsMapper.searchArtifacts(params);
 
         return new SearchResultDto(characterResult,skillResult,artifactResult);
+    }
+
+    public SearchCharacterDetailDto searchCharacterDetail(int idx){
+        log.debug("idx:{}", idx);
+        return charactersMapper.searchCharacterDetail(idx);
+    }
+
+    public List<SearchRerunDto> rerunCharacterList(@Param("keyword") String keyword){
+        log.debug("keyword:{}", keyword);
+        return charactersMapper.rerunCharacterList((keyword));
     }
 
 }

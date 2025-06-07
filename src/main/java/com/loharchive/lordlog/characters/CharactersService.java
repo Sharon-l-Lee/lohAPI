@@ -1,5 +1,6 @@
 package com.loharchive.lordlog.characters;
 
+import com.loharchive.lordlog.search.SearchCharacterDetailDto;
 import com.loharchive.lordlog.search.SearchCharactersDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -28,4 +29,6 @@ public class CharactersService {
         }
         return charactersMapper.searchCharacter(params);
     }
+
+
 }
