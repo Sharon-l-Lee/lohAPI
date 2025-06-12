@@ -25,16 +25,16 @@
     </select>
 
 
-    <select id="searchCharacterDetail" parameterType="int" resultType="com.loharchive.lordlog.search.SearchCharacterDetailDto">
-        select distinct c.*, e.name as element_name, j.name as job_name
-        from characters c
-            left outer join element e on c.element_id = e.id
-            left outer join job j on c.job_id = j.id
-        where
-            1=1
-            and c.id = #{idx}
-            and c.delete_flag = false
-    </select>
+<!--    <select id="searchCharacterDetail" parameterType="int" resultType="com.loharchive.lordlog.search.SearchCharacterDetailDto">-->
+<!--        select distinct c.*, e.name as element_name, j.name as job_name-->
+<!--        from characters c-->
+<!--            left outer join element e on c.element_id = e.id-->
+<!--            left outer join job j on c.job_id = j.id-->
+<!--        where-->
+<!--            1=1-->
+<!--            and c.id = #{idx}-->
+<!--            and c.delete_flag = false-->
+<!--    </select>-->
 
 
     <select id="rerunCharacterList" parameterType="String" resultType="com.loharchive.lordlog.search.SearchRerunDto">

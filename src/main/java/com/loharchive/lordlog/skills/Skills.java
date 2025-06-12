@@ -22,8 +22,8 @@ public class Skills {
 
     @Enumerated(EnumType.STRING)
     private SkillType type;
-    private int cooldown;
-    private int slot;
+    private Integer cooldown;
+    private Integer slot;
     private String s_desc;
     private String s_desc_2;
     private String s_desc_3;

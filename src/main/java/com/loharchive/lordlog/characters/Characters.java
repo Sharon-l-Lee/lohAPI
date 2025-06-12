@@ -2,6 +2,8 @@ package com.loharchive.lordlog.characters;
 
 
 import com.loharchive.lordlog.artifacts.Artifacts;
+import com.loharchive.lordlog.common.enums.AcquisitionMethodType;
+import com.loharchive.lordlog.common.enums.SummonType;
 import com.loharchive.lordlog.rerun.Rerun;
 import com.loharchive.lordlog.skills.Skills;
 import jakarta.persistence.*;
@@ -24,7 +26,7 @@ public class Characters {
 
     private String cname;
     private String cname_en;
-    private Long age;
+    private String age;
     private Long height;
     private Date birth;
     private String zodiac;
@@ -37,8 +39,18 @@ public class Characters {
     private String favorite_food;
     private Date release_date;
     private String img_url;
+    private String description;
+    private String mbti;
 
     private boolean delete_flag;
+
+    //획득방법
+    @Enumerated(EnumType.STRING)
+    private AcquisitionMethodType acquisition_method;
+
+    @Enumerated(EnumType.STRING)
+    private SummonType summon_type;
+
 
     @OneToMany(mappedBy = "characters", cascade =CascadeType.MERGE)
     private List<Skills> skills = new ArrayList<>();

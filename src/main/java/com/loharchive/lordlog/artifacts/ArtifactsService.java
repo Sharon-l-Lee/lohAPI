@@ -2,6 +2,7 @@ package com.loharchive.lordlog.artifacts;
 
 import com.loharchive.lordlog.search.SearchArtifactsDto;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -13,6 +14,9 @@ import java.util.Map;
 @Slf4j
 public class ArtifactsService {
     private final ArtifactsMapper artifactsMapper;
+
+    @Autowired
+    private ArtifactsRepository artifactsRepository;
 
     public ArtifactsService(ArtifactsMapper artifactsMapper) {
         this.artifactsMapper = artifactsMapper;
@@ -27,6 +31,16 @@ public class ArtifactsService {
             params.put("keywords", Arrays.asList(s));
         }
         return artifactsMapper.searchArtifacts(params);
+
+    }
+
+    public List<ArtifactsCharacterDetailDto> getCharacterArtifacts(Long cid){
+        log.debug("cid {}", cid);
+        log.debug("artifactList {}", artifactsRepository.findArtifactsByCharacters_Id(cid));
+        return artifactsRepository.findArtifactsByCharacters_Id(cid).stream()
+                .map(ArtifactsCharacterDetailDto::fromEntity)
+                .toList();
+
 
     }
 }

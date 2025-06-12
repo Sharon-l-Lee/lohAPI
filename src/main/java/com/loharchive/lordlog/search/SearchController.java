@@ -24,7 +24,7 @@ public class SearchController {
 
     }
 
-    @GetMapping("/detail")
+
     public SearchCharacterDetailDto searchDetail(@RequestParam int idx){
         return searchService.searchCharacterDetail(idx);
     }
