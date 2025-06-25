@@ -19,10 +19,8 @@ public class Rerun {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Date rerun_date;
-    private Date rerun_date_2;
-    private Date rerun_date_3;
-    private String is_pickup;
+    private Date rerun_start_date;
+    private Date rerun_end_date;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name ="c_id")

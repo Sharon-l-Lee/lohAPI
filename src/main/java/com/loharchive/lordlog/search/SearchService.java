@@ -44,9 +44,4 @@ public class SearchService {
         return charactersMapper.searchCharacterDetail(idx);
     }
 
-    public List<SearchRerunDto> rerunCharacterList(@Param("keyword") String keyword){
-        log.debug("keyword:{}", keyword);
-        return charactersMapper.rerunCharacterList((keyword));
-    }
-
 }

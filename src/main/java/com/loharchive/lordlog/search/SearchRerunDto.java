@@ -15,10 +15,9 @@ public class SearchRerunDto {
     private String cname_en;
     private String element_name;
     private String job_name;
+    private String img_url;
     private Date release_date;
+    private Date rerun_start_date;
+    private Date rerun_end_date;
 
-    private Date rerun_date;
-    private Date rerun_date_2;
-    private Date rerun_date_3;
-    private String is_pickup;
 }
