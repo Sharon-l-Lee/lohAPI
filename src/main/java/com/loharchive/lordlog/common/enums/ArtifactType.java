@@ -10,5 +10,10 @@ public enum ArtifactType {
     NM("노멀"); //일반
 
     @Getter
-    private final String artifactType;
+    private final String label;
+
+    @Override
+    public String toString() {
+        return label;
+    }
 }

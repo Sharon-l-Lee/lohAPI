@@ -12,5 +12,11 @@ public enum SummonType {
     RR("복각형"),
     COL("콜라보");
 
-    private final String SummonType;
+    @Getter
+    private final String label;
+
+    @Override
+    public String toString() {
+        return label;
+    }
 }
