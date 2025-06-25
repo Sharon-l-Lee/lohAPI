@@ -37,16 +37,4 @@
 <!--    </select>-->
 
 
-    <select id="rerunCharacterList" parameterType="String" resultType="com.loharchive.lordlog.search.SearchRerunDto">
-        select c.id, c.cname, c.cname_en, e.name as element_name, j.name as job_name, c.release_date, r.rerun_date, r.rerun_date_2, r.rerun_date_3, r.is_pickup
-        from characters c
-            left join element e on c.element_id = e.id
-            left join job j on c.job_id = j.id
-            left join rerun r on c.id = r.c_id
-        where 1=1
-        and c.cname like concat('%', #{keyword, jdbcType=VARCHAR}, '%')
-        and delete_flag = false
-        order by rerun_date asc;
-
-    </select>
 </mapper>

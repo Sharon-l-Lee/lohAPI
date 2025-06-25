@@ -15,5 +15,5 @@ public interface CharactersMapper {
 
     SearchCharacterDetailDto searchCharacterDetail(int idx);
 
-    List<SearchRerunDto> rerunCharacterList(String keywords);
+//    List<SearchRerunDto> rerunCharacterSearch(String keywords);
 }

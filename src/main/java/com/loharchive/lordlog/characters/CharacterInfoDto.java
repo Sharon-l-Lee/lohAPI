@@ -34,9 +34,6 @@ public class CharacterInfoDto {
     private String favorite_food;
     private Date release_date;
     private String img_url;
-    private Date rerun_date;
-    private Date rerun_date_2;
-    private Date rerun_date_3;
     private String description;
     private String mbti;
     @Enumerated(EnumType.STRING)

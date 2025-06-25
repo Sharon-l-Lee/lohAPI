@@ -59,6 +59,6 @@ public class Characters {
     private List<Artifacts> artifacts = new ArrayList<>();
 
     @OneToMany(mappedBy = "characters", cascade =CascadeType.MERGE)
-    private List<Rerun> rerunDate = new ArrayList<>();
+    private List<Rerun> reruns = new ArrayList<>();
 
 }
