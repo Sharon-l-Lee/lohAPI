@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.orgd/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loharchive.lordlog.rerun.RerunMapper">
+    <select id="rerunCharacterSearch" parameterType="com.loharchive.lordlog.rerun.RerunSearchRequestDto" resultType="com.loharchive.lordlog.rerun.RerunCharacterSearchDto">
+        select c.id as cid, c.cname, c.cname_en, c.acquisition_method, e.name as element_name, j.name as job_name, c.release_date, r.rerun_start_date, r.rerun_end_date, r.id
+        from rerun r
+            left join characters c on r.c_id = c.id
+            left join element e on c.element_id = e.id
+            left join job j on c.job_id = j.id
+        where 1=1
+                and c.cname like concat('%',#{keyword, jdbcType=VARCHAR},'%')
+                and r.rerun_start_date = (select max(rerun_start_date) from rerun where rerun.c_id = c.id)
+            <if test="elements != null and elements.size()>0">
+                and c.element_id in
+                <foreach collection="elements" item="element" open="(" separator="," close=")">
+                    #{element}
+                </foreach>
+            </if>
+            <if test="jobs != null and jobs.size()>0">
+                and c.job_id in
+                <foreach collection="jobs" item="job" open="(" separator="," close=")">
+                    #{job}
+                </foreach>
+            </if>
+            <if test="acquisitions != null and acquisitions.size()>0">
+                and c.acquisition_method in
+                <foreach collection="acquisitions" item="acquisition" open="(" separator="," close=")">
+                    #{acquisition}
+                </foreach>
+            </if>
+                and c.summon_type = 'RR'
+                and c.delete_flag = false
+            order by c.release_date desc;
+
+    </select>
+
+    <select id="charactersRerunList" parameterType="String" resultType="com.loharchive.lordlog.rerun.RerunCharacterListDto">
+        select r.*, c.cname from rerun r
+            left outer join characters c on r.c_id = c.id
+        where 1=1
+                and c.cname like concat('%',#{keyword, jdbcType=VARCHAR},'%')
+                and c.delete_flag = false;
+    </select>
+
+    <select id="rerunListById" parameterType="java.util.List" resultType="com.loharchive.lordlog.rerun.RerunCharacterListDto">
+        select r.*
+        from rerun r
+            left outer join characters c on r.c_id = c.id
+        <where>
+            c.acquisition_method = 'SUMM'
+            and r.c_id in
+            <if test="idx != null and idx.size()>0">
+                <foreach collection="idx" item="id" open="(" separator="," close=")">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+
+    </select>
+
+
+</mapper>
