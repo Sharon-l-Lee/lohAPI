@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -14,10 +15,10 @@ import java.util.Date;
 public class RerunCharacterDetailDto {
 
     private Long id;
-    private Date rerun_start_date;
-    private Date rerun_end_date;
+    private LocalDate rerun_start_date;
+    private LocalDate rerun_end_date;
 
-    public RerunCharacterDetailDto(Long id, Date rerun_start_date, Date rerun_end_date) {
+    public RerunCharacterDetailDto(Long id, LocalDate rerun_start_date, LocalDate rerun_end_date) {
         this.id = id;
         this.rerun_start_date = rerun_start_date;
         this.rerun_end_date = rerun_end_date;

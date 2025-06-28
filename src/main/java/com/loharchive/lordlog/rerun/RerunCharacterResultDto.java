@@ -12,5 +12,6 @@ import java.util.List;
 public class RerunCharacterResultDto {
     private List<RerunCharacterSearchDto> characters;
     private List<RerunCharacterListDto> reruns;
+    private int rerunPredict;
 
 }

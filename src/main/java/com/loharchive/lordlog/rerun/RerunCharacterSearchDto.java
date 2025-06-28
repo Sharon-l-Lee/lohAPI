@@ -6,6 +6,7 @@ import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Setter
@@ -21,7 +22,7 @@ public class RerunCharacterSearchDto {
     private String element_name;
     private String job_name;
     private String img_url;
-    private Date release_date;
-    private Date rerun_start_date;
-    private Date rerun_end_date;
+    private LocalDate release_date;
+    private LocalDate rerun_start_date;
+    private LocalDate rerun_end_date;
 }

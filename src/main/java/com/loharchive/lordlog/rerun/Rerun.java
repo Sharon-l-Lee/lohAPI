@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -19,8 +20,8 @@ public class Rerun {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Date rerun_start_date;
-    private Date rerun_end_date;
+    private LocalDate rerun_start_date;
+    private LocalDate rerun_end_date;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name ="c_id")

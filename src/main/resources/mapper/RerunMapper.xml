@@ -28,13 +28,16 @@
                     #{acquisition}
                 </foreach>
             </if>
+            <if test="summonTypeFilter == true">
                 and c.summon_type = 'RR'
+            </if>
                 and c.delete_flag = false
             order by c.release_date desc;
 
     </select>
 
     <select id="charactersRerunList" parameterType="String" resultType="com.loharchive.lordlog.rerun.RerunCharacterListDto">
+
         select r.*, c.cname from rerun r
             left outer join characters c on r.c_id = c.id
         where 1=1
@@ -43,6 +46,7 @@
     </select>
 
     <select id="rerunListById" parameterType="java.util.List" resultType="com.loharchive.lordlog.rerun.RerunCharacterListDto">
+
         select r.*
         from rerun r
             left outer join characters c on r.c_id = c.id
@@ -55,8 +59,32 @@
                 </foreach>
             </if>
         </where>
-
     </select>
 
+    <select id="rerunGapDayCalculate" resultType="com.loharchive.lordlog.rerun.RerunCycleSchedulerDto">
+        <![CDATA[
+            WITH rerun_with_gapday AS (
+                SELECT
+                rerun_start_date,
+                LAG(rerun.rerun_end_date) OVER (PARTITION BY c_id ORDER BY rerun_start_date) AS prev_date,
+                CASE
+                WHEN LAG(rerun.rerun_end_date) OVER (PARTITION BY c_id ORDER BY rerun_start_date) IS NOT NULL
+                THEN rerun_start_date - LAG(rerun.rerun_end_date) OVER (PARTITION BY c_id ORDER BY rerun_start_date)
+                ELSE 0
+                END AS gap_day
+                FROM rerun
+            ),
+            gapday_total AS (
+                SELECT * FROM rerun_with_gapday
+                WHERE gap_day <> 0
+            ),
+            gapday_count AS (
+                SELECT COUNT(*) AS count_gap FROM gapday_total
+            )
+            SELECT v.*, g.count_gap
+            FROM rerun_with_gapday v
+            CROSS JOIN gapday_count g;
+        ]]>
+    </select>
 
 </mapper>
