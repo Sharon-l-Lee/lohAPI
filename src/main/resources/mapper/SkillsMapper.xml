@@ -6,12 +6,38 @@
         from skills s
             left join characters c on s.c_id = c.id
         <where>
-            <foreach collection="keywords" item="keyword" separator="OR" open="(" close=")">
-                (
-                s.name like concat('%', #{keyword}, '%')
-                or concat(s.name, s.s_desc) like concat('%', #{keyword}, '%')
-                )
-            </foreach>
+            <if test="keywords != null and keywords.size() > 0">
+                <foreach collection="keywords" item="keyword" separator="OR">
+                    (
+                    s.name like concat('%', #{keyword}, '%')
+                    or concat(s.name, s.s_desc) like concat('%', #{keyword}, '%')
+                    )
+                </foreach>
+            </if>
+            <if test="elements != null and elements.size()>0">
+                and c.element_id in
+                <foreach collection="elements" item="element" open="(" separator="," close=")">
+                    #{element}
+                </foreach>
+            </if>
+            <if test="jobs != null and jobs.size()>0">
+                and c.job_id in
+                <foreach collection="jobs" item="job" open="(" separator="," close=")">
+                    #{job}
+                </foreach>
+            </if>
+            <if test="acquisitions != null and acquisitions.size()>0">
+                and c.acquisition_method in
+                <foreach collection="acquisitions" item="acquisition" open="(" separator="," close=")">
+                    #{acquisition}
+                </foreach>
+            </if>
+            <if test="summons!= null and summons.size()>0">
+                and c.summon_type in
+                <foreach collection="summons" item="summon" open="(" separator="," close=")">
+                    #{summon}
+                </foreach>
+            </if>
         </where>
     </select>
 </mapper>

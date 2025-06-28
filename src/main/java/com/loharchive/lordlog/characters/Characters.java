@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,7 +29,7 @@ public class Characters {
     private String cname_en;
     private String age;
     private Long height;
-    private Date birth;
+    private LocalDate birth;
     private String zodiac;
     private String voice;
     private String voice_jp;
@@ -37,7 +38,7 @@ public class Characters {
     private Long race_id;
     private String important_value;
     private String favorite_food;
-    private Date release_date;
+    private LocalDate release_date;
     private String img_url;
     private String description;
     private String mbti;

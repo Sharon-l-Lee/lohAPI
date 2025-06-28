@@ -7,13 +7,14 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public enum SummonType {
 
-    AL("상시"),
-    CT("계약"),
-    RR("복각형"),
-    COL("콜라보");
+    AL("인연소환", "ALWAYS_SUMM"),
+    CT("계약소환", "ALWAYS_SUMM"),
+    RR("운명소환", "LIMITED_SUMM"),
+    COL("콜라보", "LIMITED_SUMM");
 
     @Getter
     private final String label;
+    private final String category;
 
     @Override
     public String toString() {

@@ -21,7 +21,7 @@ public enum AcquisitionMethodType {
     EVET("이벤트","LIMITED"),
     //과금
     PACK("패키지","UNDETERMINE"),
-    SUMM("소환","LIMITED");
+    SUMM("소환","LIM");
 
 
     private final String label;

@@ -1,12 +1,12 @@
 package com.loharchive.lordlog.artifacts;
 
 import com.loharchive.lordlog.search.SearchArtifactsDto;
+import com.loharchive.lordlog.search.SearchRequestDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-import java.util.Map;
 
 @Mapper
 public interface ArtifactsMapper {
-    List<SearchArtifactsDto> searchArtifacts(Map<String,Object> params);
+    List<SearchArtifactsDto> searchArtifacts(SearchRequestDto searchRequestDto);
 }

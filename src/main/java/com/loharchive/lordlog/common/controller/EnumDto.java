@@ -1,6 +1,7 @@
 package com.loharchive.lordlog.common.controller;
 
 import com.loharchive.lordlog.common.enums.AcquisitionMethodType;
+import com.loharchive.lordlog.common.enums.SummonType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,5 +23,9 @@ public class EnumDto {
 //    }
         public static EnumDto fromEnum(AcquisitionMethodType e){
             return new EnumDto(e.getLabel(), e.name(), e.getCategory());
-    }
+        }
+
+        public static EnumDto fromEnum(SummonType e){
+            return new EnumDto(e.getLabel(), e.name(), e.getCategory());
+        }
 }

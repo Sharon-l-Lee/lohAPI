@@ -1,10 +1,7 @@
 package com.loharchive.lordlog.search;
 
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,9 +15,9 @@ public class SearchController {
         this.searchService = searchService;
     }
 
-    @GetMapping("/search")
-    public SearchResultDto search(@RequestParam String keywords) {
-        return searchService.searchService(keywords);
+    @PostMapping("/search")
+    public SearchResultDto search(@RequestBody SearchRequestDto searchRequestDto) {
+        return searchService.searchService(searchRequestDto);
 
     }
 

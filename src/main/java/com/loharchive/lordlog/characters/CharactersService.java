@@ -3,16 +3,14 @@ package com.loharchive.lordlog.characters;
 import com.loharchive.lordlog.artifacts.ArtifactsCharacterDetailDto;
 import com.loharchive.lordlog.artifacts.ArtifactsService;
 import com.loharchive.lordlog.search.SearchCharactersDto;
+import com.loharchive.lordlog.search.SearchRequestDto;
 import com.loharchive.lordlog.skills.SkillsCharacterDetailDto;
 import com.loharchive.lordlog.skills.SkillsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @Service
@@ -31,15 +29,15 @@ public class CharactersService {
         this.charactersMapper = charactersMapper;
     }
 
-    public List<SearchCharactersDto> searchCharacter(String keyword) {
-        Map<String, Object> params = new HashMap<>();
-        log.debug("캐릭터 검색어: {}", keyword);
-        String[] strArr = keyword.split("\\s");
-        for(String s : strArr){
-            log.debug("캐릭터 검색어 arr: {}", s);
-            params.put("keywords", Arrays.asList(s));
-        }
-        return charactersMapper.searchCharacter(params);
+    public List<SearchCharactersDto> searchCharacter(SearchRequestDto searchRequestDto) {
+//        Map<String, Object> params = new HashMap<>();
+//        log.debug("캐릭터 검색어: {}", keyword);
+//        String[] strArr = keyword.split("\\s");
+//        for(String s : strArr){
+//            log.debug("캐릭터 검색어 arr: {}", s);
+//            params.put("keywords", Arrays.asList(s));
+//        }
+        return charactersMapper.searchCharacter(searchRequestDto);
     }
 
     public CharacterDetailDto detailCharacter(Long id){

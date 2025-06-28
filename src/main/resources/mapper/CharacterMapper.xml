@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.orgd/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.loharchive.lordlog.characters.CharactersMapper">
-    <select id="searchCharacter" parameterType="java.util.Map" resultType="com.loharchive.lordlog.search.SearchCharactersDto">
-        select c.id as id, c.cname, c.cname_en, e.name as element_name, j.name as job_name, c.release_date, c.img_url, e.id as element_id, j.id as job_id
+    <select id="searchCharacter" parameterType="com.loharchive.lordlog.search.SearchRequestDto" resultType="com.loharchive.lordlog.search.SearchCharactersDto">
+        select c.id as id, c.cname, c.cname_en, e.name as element_name, j.name as job_name, c.release_date
+        , c.img_url, e.id as element_id, j.id as job_id,c.acquisition_method,c.summon_type
         from characters c
         left outer join element e on c.element_id = e.id
         left outer join job j on c.job_id = j.id
@@ -10,17 +11,41 @@
 <!--        where c.cname like concat('%', #{keyword}, '%')-->
 <!--        or concat(e.name, c.cname) like concat('%', #{keyword}, '%')-->
         <where>
-            <foreach collection="keywords" item="keyword" separator="AND" >
-                (
-                    c.cname like concat('%', #{keyword}, '%')
-                    or concat(e.name, c.cname) like concat('%', #{keyword}, '%')
-                    or j.name like concat('%', #{keyword}, '%')
-                )
-
-<!--                and exists(select 1 from skills s where s.c_id = c.id and s_desc like concat('%', #{keyword}, '%'))-->
-<!--                and exists(select 1 from artifacts a where a.c_id = c.id and a_desc like concat('%', #{keyword}, '%'))-->
-
-            </foreach>
+            1=1
+            <if test="keywords != null and keywords.size() > 0">
+                and
+                <foreach collection="keywords" item="keyword" separator="OR" >
+                    (
+                        c.cname like concat('%', #{keyword}, '%')
+                        or concat(e.name, c.cname) like concat('%', #{keyword}, '%')
+                        or j.name like concat('%', #{keyword}, '%')
+                    )
+                </foreach>
+            </if>
+            <if test="elements != null and elements.size()>0">
+                and c.element_id in
+                <foreach collection="elements" item="element" open="(" separator="," close=")">
+                    #{element}
+                </foreach>
+            </if>
+            <if test="jobs != null and jobs.size()>0">
+                and c.job_id in
+                <foreach collection="jobs" item="job" open="(" separator="," close=")">
+                    #{job}
+                </foreach>
+            </if>
+            <if test="acquisitions != null and acquisitions.size()>0">
+                and c.acquisition_method in
+                <foreach collection="acquisitions" item="acquisition" open="(" separator="," close=")">
+                    #{acquisition}
+                </foreach>
+            </if>
+            <if test="summons!= null and summons.size()>0">
+                and c.summon_type in
+                <foreach collection="summons" item="summon" open="(" separator="," close=")">
+                    #{summon}
+                </foreach>
+            </if>
         </where>
     </select>
 
