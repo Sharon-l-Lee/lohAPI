@@ -11,10 +11,12 @@ public class RerunService {
 
     private final RerunMapper rerunMapper;
     private final RerunRepository rerunRepository;
+    private final RerunSchedulerRepository rerunSchedulerRepository;
 
-    public RerunService(RerunMapper rerunMapper, RerunRepository rerunRepository) {
+    public RerunService(RerunMapper rerunMapper, RerunRepository rerunRepository, RerunSchedulerRepository rerunSchedulerRepository) {
         this.rerunMapper = rerunMapper;
         this.rerunRepository = rerunRepository;
+        this.rerunSchedulerRepository = rerunSchedulerRepository;
     }
 
     public RerunCharacterResultDto rerunCharacterSearch(RerunSearchRequestDto data){
@@ -22,7 +24,7 @@ public class RerunService {
             data.setSummonTypeFilter(true);
         }
         List<RerunCharacterSearchDto> characters = rerunMapper.rerunCharacterSearch((data));
-        int cycleCalculate = rerunCycleCalculate();
+        int cycleCalculate = rerunSchedulerRepository.findTopByOrderByIdDesc();
         // 조회된 캐릭터 기준으로 복각 가져오기
         List<Long> idx = characters.stream().map(RerunCharacterSearchDto::getCid).toList();
         if(!idx.isEmpty()){
