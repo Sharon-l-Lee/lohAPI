@@ -40,6 +40,7 @@ public class Characters {
     private String favorite_food;
     private LocalDate release_date;
     private String img_url;
+    private String cf_url;
     private String description;
     private String mbti;
 

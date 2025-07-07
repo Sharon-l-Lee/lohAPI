@@ -34,7 +34,7 @@ public class ArtifactsService {
 
     public List<ArtifactsCharacterDetailDto> getCharacterArtifacts(Long cid){
         log.debug("cid {}", cid);
-        log.debug("artifactList {}", artifactsRepository.findArtifactsByCharacters_Id(cid));
+//        log.debug("artifactList {}", artifactsRepository.findArtifactsByCharacters_Id(cid));
         return artifactsRepository.findArtifactsByCharacters_Id(cid).stream()
                 .map(ArtifactsCharacterDetailDto::fromEntity)
                 .toList();

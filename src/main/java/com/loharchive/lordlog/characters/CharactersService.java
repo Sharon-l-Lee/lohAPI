@@ -43,15 +43,15 @@ public class CharactersService {
     public CharacterDetailDto detailCharacter(Long id){
         List<Object[]> detailResult = charactersRepository.findCharactersDetailById(id);
         Object[] row = detailResult.get(0);
-        log.debug("행 반환: {}", row);
+//        log.debug("행 반환: {}", row);
         Characters c = (Characters) row[0];
         String element_name = (String) row[1];
         String job_name = (String) row[2];
 
         List<SkillsCharacterDetailDto> skillList = skillsService.getCharacterSkills(id);
         List<ArtifactsCharacterDetailDto> artifactList= artifactsService.getCharacterArtifacts(id);
-        log.debug("캐릭터 서비스 스킬리스트 {}", skillList);
-        log.debug("캐릭터 서비스 아펙리스트 {}", artifactList);
+//        log.debug("캐릭터 서비스 스킬리스트 {}", skillList);
+//        log.debug("캐릭터 서비스 아펙리스트 {}", artifactList);
         CharacterInfoDto info = CharacterInfoDto.from(c, element_name, job_name);
         CharacterDetailDto result = CharacterDetailDto.builder()
                 .characterInfo(info)

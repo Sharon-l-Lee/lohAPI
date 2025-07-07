@@ -26,6 +26,7 @@ public class SkillsCharacterDetailDto {
     private String s_desc_5;
     private String s_desc_6;
     private String img_url;
+    private String cf_url;
 
 
     public static SkillsCharacterDetailDto fromEntity(Skills skills){
@@ -41,6 +42,7 @@ public class SkillsCharacterDetailDto {
                 .s_desc_5(skills.getS_desc_5())
                 .s_desc_6(skills.getS_desc_6())
                 .img_url(skills.getImg_url())
+                .cf_url(skills.getCf_url())
                 .build();
 
 

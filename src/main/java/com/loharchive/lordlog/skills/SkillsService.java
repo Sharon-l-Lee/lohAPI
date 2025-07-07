@@ -15,7 +15,7 @@ public class SkillsService {
     public List<SkillsCharacterDetailDto> getCharacterSkills(Long cid){
 
         log.debug(" cid {}", cid);
-        log.debug("skillsRepository {}", skillsRepository.findSkillsByCharacters_Id(cid));
+//        log.debug("skillsRepository {}", skillsRepository.findSkillsByCharacters_Id(cid));
         return skillsRepository.findSkillsByCharacters_Id(cid).stream()
                 .map(SkillsCharacterDetailDto :: fromEntity)
                 .toList();

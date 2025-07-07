@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.orgd/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.loharchive.lordlog.artifacts.ArtifactsMapper">
     <select id="searchArtifacts" parameterType="com.loharchive.lordlog.search.SearchRequestDto" resultType="com.loharchive.lordlog.search.SearchArtifactsDto">
-        select a.id as aid, a.name as aname, a.type as atype, a.a_desc, c.cname as cname, c.id as c_id, c.cname as cname, c.acquisition_method, c.summon_type
+        select a.id as aid, a.name as aname, a.type as atype, a.a_desc, c.cname as cname, c.id as c_id, c.cname as cname, c.acquisition_method, c.summon_type, a.cf_url
         from artifacts a
         left join characters c on a.c_id = c.id
         <where>

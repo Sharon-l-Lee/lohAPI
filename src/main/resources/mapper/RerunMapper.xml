@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.orgd/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.loharchive.lordlog.rerun.RerunMapper">
     <select id="rerunCharacterSearch" parameterType="com.loharchive.lordlog.rerun.RerunSearchRequestDto" resultType="com.loharchive.lordlog.rerun.RerunCharacterSearchDto">
-        select c.id as cid, c.cname, c.cname_en, c.acquisition_method, e.name as element_name, j.name as job_name, c.release_date, r.rerun_start_date, r.rerun_end_date, r.id
+        select c.id as cid, c.cname, c.cname_en, c.acquisition_method, e.name as element_name, j.name as job_name, c.release_date, r.rerun_start_date, r.rerun_end_date, r.id, c.cf_url
         from rerun r
             left join characters c on r.c_id = c.id
             left join element e on c.element_id = e.id

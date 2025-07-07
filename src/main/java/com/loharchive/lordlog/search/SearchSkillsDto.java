@@ -16,6 +16,7 @@ public class SearchSkillsDto {
     private SkillType stype;
     private String s_desc;
     private String img_url;
+    private String cf_url;
     private int slot;
     private Long c_id;
     private String cname;

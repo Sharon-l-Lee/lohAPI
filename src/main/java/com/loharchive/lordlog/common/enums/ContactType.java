@@ -5,14 +5,19 @@ import lombok.Getter;
 public enum ContactType {
     ER("오류제보"),
     FR("기능추가요청"),
+    DA("데이터수정"),
     ET("기타");
 
 
     @Getter
-    private final String contactType;
+    private final String label;
 
-    ContactType(String contactType){
-        this.contactType = contactType;
+    ContactType(String label){
+        this.label = label;
 
+    }
+    @Override
+    public String toString() {
+        return label;
     }
 }

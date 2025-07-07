@@ -41,8 +41,6 @@ public class MailService {
         MimeMessage mimeMailMessage = mailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMailMessage, true);
 
-        subject = "[" + contactType.getContactType()+ "] " + subject;
-        log.debug(subject + " " + contactType);
         mimeMessageHelper.setTo(adminAddress);
         mimeMessageHelper.setSubject(subject);
         mimeMessageHelper.setText(content, true);

@@ -22,6 +22,7 @@ public class SearchCharactersDto {
     private Long job_id;
     private String job_name;
     private String img_url;
+    private String cf_url;
     private Date release_date;
     private Long age;
     private Long height;

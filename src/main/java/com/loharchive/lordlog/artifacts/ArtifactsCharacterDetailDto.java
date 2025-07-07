@@ -24,6 +24,7 @@ public class ArtifactsCharacterDetailDto {
     private String a_desc_5;
     private String a_desc_6;
     private String img_url;
+    private String cf_url;
 
 
     public static ArtifactsCharacterDetailDto fromEntity(Artifacts artifacts){
@@ -37,6 +38,7 @@ public class ArtifactsCharacterDetailDto {
                 .a_desc_5(artifacts.getA_desc_5())
                 .a_desc_6(artifacts.getA_desc_6())
                 .img_url(artifacts.getImg_url())
+                .cf_url(artifacts.getCf_url())
                 .build();
 
 

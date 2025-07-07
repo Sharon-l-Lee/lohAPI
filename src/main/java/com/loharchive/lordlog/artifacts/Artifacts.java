@@ -27,6 +27,7 @@ public class Artifacts {
     private String a_desc_5;
     private String a_desc_6;
     private String img_url;
+    private String cf_url;
     private boolean delete_flag;
 
     @ManyToOne(fetch = FetchType.LAZY)

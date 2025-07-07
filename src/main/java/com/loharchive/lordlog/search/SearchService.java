@@ -22,6 +22,7 @@ public class SearchService {
     }
 
     public SearchResultDto searchService(SearchRequestDto searchRequestDto){
+        log.debug("dto{}", searchRequestDto.getKeywords());
         List<SearchCharactersDto> characterResult  = charactersMapper.searchCharacter(searchRequestDto);
         List<SearchSkillsDto> skillResult = skillsMapper.searchSkills(searchRequestDto);
         List<SearchArtifactsDto> artifactResult = artifactsMapper.searchArtifacts(searchRequestDto);
@@ -30,7 +31,7 @@ public class SearchService {
     }
 
     public SearchCharacterDetailDto searchCharacterDetail(int idx){
-        log.debug("idx:{}", idx);
+//        log.debug("idx:{}", idx);
         return charactersMapper.searchCharacterDetail(idx);
     }
 

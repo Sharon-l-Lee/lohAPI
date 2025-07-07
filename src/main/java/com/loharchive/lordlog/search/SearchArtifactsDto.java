@@ -16,6 +16,7 @@ public class SearchArtifactsDto {
     private ArtifactType atype;
     private String a_desc;
     private String img_url;
+    private String cf_url;
     private Long c_id;
     private String cname;
 }

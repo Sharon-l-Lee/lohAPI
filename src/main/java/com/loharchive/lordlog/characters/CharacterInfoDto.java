@@ -35,6 +35,7 @@ public class CharacterInfoDto {
     private String favorite_food;
     private LocalDate release_date;
     private String img_url;
+    private String cf_url;
     private String description;
     private String mbti;
     @Enumerated(EnumType.STRING)
@@ -61,6 +62,7 @@ public class CharacterInfoDto {
                 .favorite_food(character.getFavorite_food())
                 .release_date(character.getRelease_date())
                 .img_url(character.getImg_url())
+                .cf_url(character.getCf_url())
                 .description(character.getDescription())
                 .mbti(character.getMbti())
                 .acquisitionMethodType(character.getAcquisition_method())

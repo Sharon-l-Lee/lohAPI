@@ -1,5 +1,6 @@
 package com.loharchive.lordlog.admin.contact;
 
+import com.loharchive.lordlog.common.enums.ContactType;
 import com.loharchive.lordlog.notification.MailService;
 import jakarta.mail.MessagingException;
 import lombok.extern.slf4j.Slf4j;
@@ -22,9 +23,10 @@ public class ContactService {
 
     public ContactRegisterDto createContact(ContactRegisterDto contactRegisterDto){
         log.debug("dto {}", contactRegisterDto.getType());
+        String title = "[로드 아카이브] " + contactRegisterDto.getType().toString();
         Contact contactResult = contactRepository.save(contactRegisterDto.toEntity());
         try{
-            mailService.sendToAdminMail(contactRegisterDto.getTitle(), contactRegisterDto.getContents(), contactRegisterDto.getType());
+            mailService.sendToAdminMail(title, contactRegisterDto.getContents(), contactRegisterDto.getType());
         }catch(MailException | MessagingException e ){
             log.error("메일 전송 실패" + e.getMessage());
             throw new InternalException("메일 전송중 오류 발생");

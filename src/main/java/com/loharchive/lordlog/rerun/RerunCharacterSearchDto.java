@@ -22,6 +22,7 @@ public class RerunCharacterSearchDto {
     private String element_name;
     private String job_name;
     private String img_url;
+    private String cf_url;
     private LocalDate release_date;
     private LocalDate rerun_start_date;
     private LocalDate rerun_end_date;

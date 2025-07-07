@@ -23,5 +23,6 @@ public class SearchCharacterDetailDto {
     private Long height;
     private String important_value;
     private String favorite_food;
+    private String cf_url;
 
 }
