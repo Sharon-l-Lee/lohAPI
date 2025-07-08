@@ -22,4 +22,4 @@ jobs:
 
       - name: Test SSH connection
         run: |
-          ssh -i ~/.ssh/id_rsa ubuntu@your.server.ip echo "✅ SSH 연결 성공!"
+          ssh -i ~/.ssh/id_rsa ${{ secrets.HOST }} echo "✅ SSH 연결 성공!"
