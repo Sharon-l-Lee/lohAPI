@@ -38,20 +38,15 @@ jobs:
         username: ubuntu
         key: ${{ secrets.SSH_KEY }}
         script: |
-          echo "${{ secrets.ENV_FILE }}" > /home/ubuntu/app/.env
-        
-          cd /home/ubuntu/app
-          if [ ! -d "backend/.git" ]; then
-            git clone https://github.com/Sharon-l-Lee/lohAPI.git
-          else
-            cd backend && git pull origin main && cd ..
-          fi
-        
-          if [ ! -d "frontend/.git" ]; then
-            git clone https://github.com/Sharon-l-Lee/loh_ui.git
-          else
-            cd frontend && git pull origin main && cd ..
-          fi
-        
-          docker compose down
-          docker compose up -d --build
+           echo "${{ secrets.ENV_FILE }}" > /home/ubuntu/app/.env
+          
+            cd /home/ubuntu/app
+          
+            if [ ! -d "backend/.git" ]; then
+              git clone https://github.com/Sharon-l-Lee/lohAPI.git backend
+            else
+              cd backend && git pull origin main && cd ..
+            fi
+          
+            docker compose build backend
+            docker compose restart backend
