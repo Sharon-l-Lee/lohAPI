@@ -28,6 +28,11 @@ services:
   frontend:
     build:
       context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - fronted-dist:/dist
+    depends_on:
+      - backend
     ports:
       - "5173:5173"
 
@@ -50,7 +55,11 @@ services:
     ports:
       - "8888:80"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./frontend/nginx.conf:/etc/nginx/nginx.conf
+      - frontend-dist:/usr/share/nginx/html
+    depends_on:
+      - frontend
+      - backend
     networks:
       - appnet
 
@@ -60,3 +69,4 @@ networks:
 
 volumes:
   pgdata:
+  fronted-dist:
