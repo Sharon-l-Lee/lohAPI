@@ -1,0 +1,25 @@
+name: SSH Key Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-ssh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Make SSH dir
+        run: mkdir -p ~/.ssh && chmod 700 ~/.ssh
+
+      - name: Add private key
+        run: |
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      - name: Add known hosts
+        run: |
+          ssh-keyscan -H your.server.ip >> ~/.ssh/known_hosts
+
+      - name: Test SSH connection
+        run: |
+          ssh -i ~/.ssh/id_rsa ubuntu@your.server.ip echo "✅ SSH 연결 성공!"
