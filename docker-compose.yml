@@ -16,8 +16,6 @@ services:
     build:
       context: ../frontend
       dockerfile: Dockerfile
-    volumes:
-      - frontend-dist:/dist
     depends_on:
       - backend
     ports:
