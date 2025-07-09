@@ -69,4 +69,4 @@ networks:
 
 volumes:
   pgdata:
-  fronted-dist:
+  frontend-dist:
