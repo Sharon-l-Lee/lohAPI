@@ -48,7 +48,17 @@ jobs:
           --protocol tcp \
           --port 22 \
           --cidr ${CURRENT_IP}/32
-
+    - name: Basic connectivity test
+      run: |
+        echo "=== Testing basic connectivity ==="
+        ping -c 3 ${{ secrets.SSH_HOST }} && echo "Ping OK" || echo "Ping FAILED"
+        
+        echo "=== Testing port 22 ==="
+        nc -zv -w 10 ${{ secrets.SSH_HOST }} 22 && echo "Port 22 OPEN" || echo "Port 22 BLOCKED"
+        
+        echo "=== Testing port 80 ==="
+        nc -zv -w 10 ${{ secrets.SSH_HOST }} 80 && echo "Port 80 OPEN" || echo "Port 80 BLOCKED"
+        
     - name: Execute remote SSH commands using password
       uses: appleboy/ssh-action@v1
       with:
