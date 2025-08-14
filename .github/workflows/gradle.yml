@@ -69,13 +69,13 @@ jobs:
             docker compose build backend
             docker compose restart backend
 
-    - name: Remove IP from security group
-      if: always()
-      run: |
-        CURRENT_IP=$(curl -s https://api.ipify.org)
+    # - name: Remove IP from security group
+    #   if: always()
+    #   run: |
+    #     CURRENT_IP=$(curl -s https://api.ipify.org)
         
-        aws ec2 revoke-security-group-ingress \
-          --group-id ${{ secrets.SECURITY_GROUP_ID }} \
-          --protocol tcp \
-          --port 22 \
-          --cidr ${CURRENT_IP}/32
+    #     aws ec2 revoke-security-group-ingress \
+    #       --group-id ${{ secrets.SECURITY_GROUP_ID }} \
+    #       --protocol tcp \
+    #       --port 22 \
+    #       --cidr ${CURRENT_IP}/32
