@@ -47,8 +47,7 @@ jobs:
           --group-id ${{ secrets.SECURITY_GROUP_ID }} \
           --protocol tcp \
           --port 22 \
-          --cidr ${CURRENT_IP}/32 \
-          --description "GitHub Actions temporary access"
+          --cidr ${CURRENT_IP}/32
 
     - name: Execute remote SSH commands using password
       uses: appleboy/ssh-action@v1
