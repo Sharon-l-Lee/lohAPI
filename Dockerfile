@@ -1,5 +1,5 @@
 #빌드
-FROM gradle:8.5-jdk17 AS build
+FROM eclipse-temurin:17-jdk AS build
 WORKDIR /app
 COPY --chown=gradle:gradle . .
 RUN gradle build -x test --no-daemon
